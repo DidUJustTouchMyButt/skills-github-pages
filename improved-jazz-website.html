@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken Jazz & the tingg* Machine</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Special+Elite&family=Merriweather:wght@400;700&family=Bebas+Neue&family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #e94560;
+            --light-color: #f8f5f2;
+            --dark-text: #333;
+            --typewriter-font: 'Special Elite', cursive;
+            --body-font: 'Montserrat', sans-serif;
+            --heading-font: 'Bebas Neue', sans-serif;
+            --serif-font: 'Merriweather', serif;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: var(--body-font);
+            line-height: 1.6;
+            color: var(--dark-text);
+            background: #f5f5f5 url('https://cdnjs.cloudflare.com/ajax/libs/svgbackgrounds/1.0.0/vintage-concrete.svg');
+            background-attachment: fixed;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 2rem 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('/api/placeholder/1200/600') center/cover no-repeat;
+            opacity: 0.2;
+            z-index: 0;
+        }
+        
+        header .container {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .typewriter-title {
+            font-family: var(--typewriter-font);
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+            border-right: 4px solid var(--accent-color);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+            max-width: 100%;
+            padding-right: 5px;
+        }
+        
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+        
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--accent-color) }
+        }
+        
+        .tingg {
+            color: var(--accent-color);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tingg::after {
+            content: "*";
+            position: absolute;
+            top: -10px;
+            right: -10px;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+        }
+        
+        .tagline {
+            font-family: var(--serif-font);
+            font-style: italic;
+            max-width: 800px;
+            margin-bottom: 2rem;
+            line-height: 1.8;
+            font-size: 1.1rem;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 1rem;
+        }
+        
+        /* Navigation */
+        nav {
+            margin: 2rem 0;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding: 1rem 0;
+        }
+        
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            gap: 1.5rem;
+        }
+        
+        nav a {
+            color: var(--light-color);
+            text-decoration: none;
+            font-family: var(--heading-font);
+            letter-spacing: 1px;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 0;
+            position: relative;
+        }
+        
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: 0;
+            left: 0;
+            background-color: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav a:hover::after {
+            width: 100%;
+        }
+        
+        /* Audio Player */
+        .audio-player {
+            background: rgba(0,0,0,0.3);
+            padding: 1rem;
+            border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        
+        .audio-player audio {
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        .audio-note {
+            font-size: 0.8rem;
+            opacity: 0.8;
+            margin-top: 0.5rem;
+            font-style: italic;
+        }
+        
+        /* Main Content */
+        main {
+            padding: 3rem 0;
+        }
+        
+        section {
+            margin-bottom: 5rem;
+            position: relative;
+        }
+        
+        /* Section Styling */
+        #home {
+            text-align: center;
+        }
+        
+        blockquote {
+            font-family: var(--serif-font);
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+            color: var(--primary-color);
+            max-width: 800px;
+            margin: 2rem auto;
+            position: relative;
+            padding: 2rem;
+            border-left: 4px solid var(--accent-color);
+            background: rgba(255,255,255,0.8);
+        }
+        
+        blockquote::before {
+            content: '"';
+            font-size: 5rem;
+            position: absolute;
+            left: 10px;
+            top: -20px;
+            color: var(--accent-color);
+            opacity: 0.3;
+        }
+        
+        .featured-image {
+            max-width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            margin: 2rem 0;
+        }
+        
+        h2 {
+            font-family: var(--heading-font);
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            position: relative;
+            display: inline-block;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background-color: var(--accent-color);
+        }
+        
+        h3 {
+            font-family: var(--heading-font);
+            font-size: 1.8rem;
+            color: var(--secondary-color);
+            margin: 1.5rem 0 1rem;
+        }
+        
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        /* Section specific styles */
+        #story p, #world p {
+            max-width: 900px;
+        }
+        
+        .inline-image {
+            float: right;
+            max-width: 300px;
+            margin: 0 0 1.5rem 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .inline-image:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        
+        #players ul {
+            list-style: none;
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        #players li {
+            background: rgba(255,255,255,0.8);
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        #players li:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        
+        #players strong {
+            color: var(--accent-color);
+            font-family: var(--typewriter-font);
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 1.2rem;
+        }
+        
+        .author-photo {
+            float: left;
+            margin: 0 1.5rem 1.5rem 0;
+            border-radius: 50%;
+            max-width: 200px;
+            border: 4px solid white;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Gallery */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 2rem;
+        }
+        
+        .gallery-grid img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            filter: grayscale(30%);
+        }
+        
+        .gallery-grid img:hover {
+            transform: scale(1.03);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            filter: grayscale(0%);
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 2rem 0;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        footer p {
+            margin-bottom: 0.5rem;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .typewriter-title {
+                font-size: 2rem;
+                white-space: normal;
+                animation: none;
+                border-right: none;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.8rem;
+            }
+            
+            .inline-image {
+                float: none;
+                display: block;
+                margin: 1.5rem auto;
+                max-width: 100%;
+            }
+            
+            #players ul {
+                grid-template-columns: 1fr;
+            }
+            
+            .author-photo {
+                float: none;
+                display: block;
+                margin: 0 auto 1.5rem;
+            }
+            
+            blockquote {
+                font-size: 1.2rem;
+                padding: 1.5rem;
+            }
+        }
+        
+        /* Animation for sections */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Style for the tingg machine section */
+        .tingg-highlight {
+            background: rgba(233, 69, 96, 0.05);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+        }
+        
+        .tingg-highlight::before {
+            content: "*tingg*";
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-family: var(--typewriter-font);
+            font-size: 0.9rem;
+        }
+        
+        /* Section dividers */
+        .divider {
+            height: 1px;
+            background: linear-gradient(to right, transparent, rgba(233, 69, 96, 0.5), transparent);
+            margin: 4rem 0;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1 class="typewriter-title">Spoken Jazz & the <span class="tingg">tingg*</span> Machine</h1>
+            <p class="tagline">Two budding jazz musicians share a house not far from the college they attend on scholarship in a drab Navy town outside of Seattle. A creative community is unwittingly ignited - adding color to the landscape & a renaissance despite the blue collar world.</p>
+            
+            <nav>
+                <ul>
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#story">The Story</a></li>
+                    <li><a href="#world">The World</a></li>
+                    <li><a href="#players">The Players</a></li>
+                    <li><a href="#sound">The Sound</a></li>
+                    <li><a href="#author">The Poet</a></li>
+                    <li><a href="#gallery">Gallery</a></li>
+                </ul>
+            </nav>
+            
+            <div class="audio-player">
+                <audio controls loop>
+                    <!-- Replace with actual Bebop track -->
+                    <source src="audio/bebop-loop.mp3" type="audio/mpeg">
+                    Your browser does not support the audio element.
+                </audio>
+                <p class="audio-note">(Background Bebop - User Controllable)</p>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="home" class="container fade-in">
+            <blockquote>"If he plays more, you play less." - Miles Davis</blockquote>
+            <img src="/api/placeholder/1000/500" alt="Atmospheric image representing the story's mood" class="featured-image">
+            <p>Welcome to the digital grotto, a space echoing the rhythms of Bebop, the clatter of the tingg* Machine, and the rainy persistence of a PNW Navy town finding its creative soul...</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="story" class="container fade-in">
+            <h2>The Story</h2>
+            <p>In Bremerton, a town painted in Navy blue and shades of grey, guitarist Bub Pratt and bassist Andrew share a house and a scholarship to Olympic College. Bub, a poet who dances outside the lines, and Andrew, meticulous and driven, become unlikely anchors for a burgeoning creative scene.</p>
+            
+            <p>Amidst jam sessions fueled by Pizneon Greens and bootleg coffee, open mics at the divey Old Town Tavern, and the constant rhythm of Bub's vintage Remington typewriter – the *tingg* Machine – a community sparks. They navigate disastrous gigs, complicated relationships (divorces, unexpected pregnancies, the magnetic pull of new connections like Mary and Karen), black market dealings orchestrated by the enigmatic Bill Lawson, and the raw, messy process of finding their artistic voices against a blue-collar backdrop.</p>
+            
+            <p>It's a story about jazz, poetry, resilience, and the accidental renaissance ignited by cheap beer, ambition, and the refusal to let the landscape remain colorless.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="world" class="container fade-in">
+            <h2>The World: Rat City Rhapsody</h2>
+            <img src="/api/placeholder/400/300" alt="PNW rainy landscape" class="inline-image">
+            <p>The air hangs thick with the smell of brine and rain. This isn't Seattle's polish; it's Bremerton, Silverdale, Kingston – working towns huddled by the Puget Sound. Life revolves around the Navy base, the ferry schedules, and the local dives like the <strong>Old Town Tavern</strong> (home of Pizneon Greens and Fred's crooner past) or <strong>Bill's Grotto</strong> (part speakeasy, part black market hub).</p>
+            
+            <p>The <strong>Olympic College music department</strong> is a haven, its practice rooms echoing with scales and standards, a stark contrast to the "drab Navy town" outside. The <strong>Scott Street house</strong> becomes ground zero for late-night jams and chaotic camaraderie.</p>
+            
+            <div class="tingg-highlight">
+                <h3>The *tingg* Machine</h3>
+                <img src="/api/placeholder/300/200" alt="A vintage Remington portable typewriter" class="inline-image">
+                <p>Central to Bub's world is his late 40's Remington portable typewriter, the <strong>tingg* Machine</strong>. It's not just a tool for his zines; it's a percussion instrument, a character, the relentless rhythm section for his spoken jazz dreams. Its *tingg* punctuates the narrative, a mechanical heartbeat in the digital age.</p>
+            </div>
+            
+            <p>Other key spots bubble up: The <strong>Bebop Coffeeshop</strong> (a source of inspiration and bad jobs), the <strong>Manette Bridge</strong> (a landmark for contemplation and dares), the <strong>Kingston Marina</strong> (a bohemian escape on a leaky boat), and the ubiquitous <strong>VW Wonderbus</strong> (Bub's home, transport, and mobile creative space).</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="players" class="container fade-in">
+            <h2>The Players: Roll Call</h2>
+            <p>(Partial List - See Manuscript for Full Cast)</p>
+            <ul>
+                <li><strong>Bub Pratt (OGBC: Cassandra):</strong> Guitarist, poet, zine-maker, catalyst. Lives by his own code.</li>
+                <li><strong>Andrew:</strong> Studious Bassist, composer, Bub's counterpoint.</li>
+                <li><strong>Rick:</strong> Virtuosic new Band Director, mentor figure.</li>
+                <li><strong>Mary:</strong> Quiet artist, observer, eventual mother of Bub's children.</li>
+                <li><strong>Bill Lawson:</strong> Underground bar owner, black marketeer, tragic figure.</li>
+                <li><strong>Marshal (OGBC: Pam):</strong> Talented Bassist, Harley's brother, core of the jam scene.</li>
+                <li><strong>TJ (OGBC: Steve):</strong> Rippin' piano player, straight shooter.</li>
+                <li><strong>Harley (OGBC: Erica):</strong> Drumming brother, Magnetic North member.</li>
+                <li><strong>Karen:</strong> Bub's ex/recurring flame, deals blackjack, catalyst for drama.</li>
+                <li><strong>Sydney:</strong> Bill's DJ girlfriend, vocalist ("Lemons").</li>
+                <li><strong>The *tingg* Machine:</strong> Bub's 1940s Remington Typewriter, a character in itself.</li>
+            </ul>
+            <p>...and a sprawling cast of musicians, mentors, lovers, dealers, barflies, and OGBC (Original Black Cock) members navigating life, music, and mistakes.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="sound" class="container fade-in">
+            <h2>The Sound: Notes & Words</h2>
+            <img src="/api/placeholder/400/300" alt="Close up of jazz instruments like sax and trumpet" class="inline-image">
+            <p>The soundtrack is pure <strong>Bebop</strong> – complex, fast, improvisational. Tunes like "Donna Lee," "So What?," "Mr. P.C.," "Nardis," and "Confirmation" aren't just background music; they're the language the characters speak, the challenges they tackle in jam sessions.</p>
+            
+            <p>Overlaying this is the <strong>Narration</strong>, delivered like beat/slam poetry – rhythmic, raw, weaving through the story with the persistent *tingg* of Bub's typewriter. Bub's own <strong>Spoken Jazz</strong> performances blend his poetry directly with the music, blurring the lines between words and notes.</p>
+            
+            <p>Original songs pepper the narrative, reflecting character moments: Sydney's electronic "Lemons," Karen's heartbroken "Stupid Gullible Me," the hopeful "Butterfly Song," the raw anger of "Fires & Floods," and the poignant "Wedding Waltz."</p>
+            
+            <p>Bub's <strong>zines</strong> ("Bebop Coffeeshop," etc.) represent the DIY, tangible aspect of his creativity, crafted with scissors, glue, and the *tingg* Machine.</p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="author" class="container fade-in">
+            <h2>The Poet: Bub Pratt</h2>
+            <img src="/api/placeholder/200/200" alt="Author Bub Pratt" class="author-photo">
+            <p>Bub Pratt channels the spirit of the beat poets and the improvisational energy of jazz into narratives that explore the messy beauty of creative life in unexpected places. Drawing from experiences in the Pacific Northwest music scene, Pratt's work captures the rhythm of late nights, the sting of cheap whiskey, and the relentless drive to make art against the odds.</p>
+            <p><em>- In loving memory of William Lawson -</em></p>
+        </section>
+
+        <div class="divider"></div>
+
+        <section id="gallery" class="container fade-in">
+            <h2>Gallery: Visions from the Grotto</h2>
+            <div class="gallery-grid">
+                <img src="/api/placeholder/400/300" alt="Old VW Bus, perhaps in the rain">
+                <img src="/api/placeholder/400/300" alt="Close up detail of the Tingg Machine typewriter keys">
+                <img src="/api/placeholder/400/300" alt="Dimly lit corner of a jazz club or bar">
+                <img src="/api/placeholder/400/300" alt="Rain streaked window overlooking a PNW scene">
+                <img src="/api/placeholder/400/300" alt="Boats docked at a marina, possibly Kingston">
+                <img src="/api/placeholder/400/300" alt="A page from one of Bub's zines">
+                <img src="/api/placeholder/400/300" alt="Stained coffee cup on a table">
+                <img src="/api/placeholder/400/300" alt="Blurred neon sign from a bar">
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>© <span id="current-year">2025</span> Bub Pratt. All Rights Reserved.</p>
+            <p>Website Concept: The Digital Grotto</p>
+        </div>
+    </footer>
+
+    <script>
+        // Set current year in footer
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+        
+        // Animation for sections
+        const sections = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        sections.forEach(section => {
+            observer.observe(section);
+        });
+        
+        // Typewriter animation reset on resize
+        window.addEventListener('resize', () => {
+            const title = document.querySelector('.typewriter-title');
+            if (window.innerWidth <= 768) {
+                title.style.animation = 'none';
+                title.style.borderRight = 'none';
+            } else {
+                title.style.animation = 'typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite';
+                title.style.borderRight = '4px solid var(--accent-color)';
+            }
+        });
+    </script>
+</body>
+</html>
