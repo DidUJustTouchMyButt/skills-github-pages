@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Studio Guide for Marv Reeves</title>
+    <style>
+        :root {
+            --primary-color: #1a73e8;
+            --secondary-color: #34a853;
+            --accent-color: #6e41c0; /* Deep Think Purple */
+            --build-color: #ea4335; /* Color for the Build section */
+            --dark-bg: #131314;
+            --light-bg: #ffffff;
+            --text-dark: #3c4043;
+            --text-light: #e8eaed;
+            --card-bg: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Google Sans', 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--text-dark);
+            background-color: var(--light-bg);
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a73e8, #6e41c0);
+            color: var(--text-light);
+            padding: 2.5rem 1rem;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.8rem;
+            letter-spacing: -0.5px;
+        }
+
+        header p {
+            font-size: 1.3rem;
+            opacity: 0.95;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .intro-box {
+            background-color: #f4f8ff;
+            border-left: 5px solid var(--primary-color);
+            padding: 1.5rem;
+            margin-bottom: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--dark-bg);
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+            margin-top: 3rem;
+            font-size: 1.8rem;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 12px;
+            border: 1px solid #e0e0e0;
+            transition: transform 0.2s;
+        }
+        
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        .card h3 {
+            margin-top: 0;
+            color: var(--primary-color);
+            font-size: 1.3rem;
+        }
+
+        .card-special {
+            border: 2px solid var(--accent-color);
+            background: #fbf9ff;
+        }
+        
+        .card-special h3 {
+            color: var(--accent-color);
+        }
+
+        /* Styles for the new Build Section */
+        .build-section {
+            border: 2px solid var(--build-color);
+            background-color: #fff8f8;
+            padding: 2rem;
+            border-radius: 12px;
+            margin-top: 2rem;
+        }
+
+        .build-section h3 {
+            color: var(--build-color);
+            margin-top: 0;
+        }
+
+        .example-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1rem 0;
+            background: white;
+            font-size: 0.9rem;
+        }
+
+        .example-table th, .example-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        .example-table th {
+            background-color: #f2f2f2;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        li {
+            margin-bottom: 10px;
+        }
+
+        .tech-section {
+            background-color: var(--dark-bg);
+            color: #e8eaed;
+            padding: 2.5rem;
+            border-radius: 16px;
+            margin-top: 3rem;
+        }
+
+        .tech-section h2 {
+            color: #fff;
+            border-bottom-color: #444;
+        }
+
+        .tech-section h3 {
+            color: #a8c7fa;
+        }
+
+        .tech-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tech-card {
+            background: #303134;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #444;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 3rem;
+            margin-top: 4rem;
+            background-color: #f1f3f4;
+            font-size: 0.9rem;
+            color: #5f6368;
+            border-top: 1px solid #e0e0e0;
+        }
+        
+        .signature {
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+        }
+
+        code {
+            background-color: rgba(0,0,0,0.06);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Roboto Mono', monospace;
+            font-size: 0.9em;
+        }
+        
+        .tech-card code {
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>The Marv Reeves Guide to AI</h1>
+    <p>Unlocking the full power of Gemini 3 Pro & AI Studio</p>
+</header>
+
+<div class="container">
+
+    <div class="intro-box">
+        <h3>👋 Uncle Marv,</h3>
+        <p>I built this page to show you the ropes on the "Pro" side of AI. You've probably seen the standard Gemini app on your phone, which is like driving a car with an automatic transmission. <strong>AI Studio</strong> is the mechanic's garage. It gives you manual control, lets you pop the hood, and access the really powerful engines like the new <strong>Gemini 3 Pro</strong>.</p>
+    </div>
+
+    <h2>Why Switch to AI Studio?</h2>
+    <div class="comparison-grid">
+        <div class="card">
+            <h3>1. The "System Instruction"</h3>
+            <p>In the standard app, you just start typing. In AI Studio, there is a special box called <strong>System Instructions</strong>. This is where you set the "God Mode" rules.</p>
+            <ul>
+                <li><strong>Standard App:</strong> You have to constantly remind it "Be concise" or "Don't use emojis."</li>
+                <li><strong>AI Studio:</strong> You write <em>"You are a cynical noir detective. Never use emojis. Keep answers under 50 words"</em> in the system box once, and it obeys that persona perfectly.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>2. Control the "Temperature"</h3>
+            <p>AI Studio has sliders on the right side. The most important is <strong>Temperature</strong>.</p>
+            <ul>
+                <li><strong>Low Temperature (0.0 - 0.2):</strong> Makes the AI rigorous and factual. Essential for math, coding, or summarizing legal PDFs.</li>
+                <li><strong>High Temperature (0.8 - 1.0):</strong> Makes the AI creative and "dreamy." Perfect for brainstorming.</li>
+            </ul>
+        </div>
+
+        <div class="card card-special">
+            <h3>3. The New Brains: Gemini 3 Pro</h3>
+            <p>This is the big difference. In Studio, you can manually select the model:</p>
+            <ul>
+                <li><strong>Gemini 3 Pro (The Beast):</strong> The newest model. It features "Deep Think" capabilities for complex reasoning and "Vibe Coding" for building software.</li>
+                <li><strong>Gemini 2.5 Flash:</strong> Extremely fast and cheap. Use this for quick summaries of long documents.</li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <h3>4. Save & Reuse Prompts</h3>
+            <p>In AI Studio, you save your setups as "Prompts" (like files). If you build a perfect "Contract Analyzer" setup, you save it. Next time, just open that file, drop in a new PDF, and run it.</p>
+        </div>
+    </div>
+
+    <h2>THE "BUILD" FUNCTION (Structured Prompts)</h2>
+    <p>You mentioned wanting to know about "Build." This is distinct from "Chat." In Chat, you talk back and forth. In Build (Structured Prompt), you <strong>teach by example</strong>.</p>
+    
+    <div class="build-section">
+        <h3>How "Build" Works: Few-Shot Prompting</h3>
+        <p>Instead of just asking a question, you provide the AI with a list of "Input" and "Output" examples. This forces the AI to follow your exact pattern. This is how you build reliable tools or game logic.</p>
+        
+        <p><strong>Example: Building a "Review Categorizer"</strong><br>
+        You want to paste a customer review and have the AI give you one word: Positive, Neutral, or Negative.</p>
+        
+        <table class="example-table">
+            <thead>
+                <tr>
+                    <th>Input (You type this)</th>
+                    <th>Output (You teach the AI this)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>"I loved the service!"</td>
+                    <td>Positive</td>
+                </tr>
+                <tr>
+                    <td>"It was okay, waited a bit long."</td>
+                    <td>Neutral</td>
+                </tr>
+                <tr>
+                    <td>"Terrible food, cold soup."</td>
+                    <td>Negative</td>
+                </tr>
+                <tr>
+                    <td><strong>"Best night of my life!"</strong></td>
+                    <td><em>(AI will automatically fill this: Positive)</em></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <p><strong>Why use this?</strong><br> Because in "Chat" mode, the AI might reply: <em>"Oh, I'm glad you had a good night! That sounds positive."</em> In "Build" mode, it sees your examples and knows to just say: <strong>"Positive"</strong>. It turns the AI into a strict computer program.</p>
+    </div>
+
+    <h2>Everyday Uses for LLMs</h2>
+    <p>Even if you aren't doing technical work, these models are incredible productivity multipliers for daily life.</p>
+    
+    <ul>
+        <li><strong>Drafting Difficult Emails:</strong> Paste a rude email you received. Ask the AI: <em>"Write a polite but firm professional response that declines their request without burning bridges."</em></li>
+        <li><strong>Meal Planning (The "Fridge" trick):</strong> Take a photo of the inside of your refrigerator. Upload it to Gemini. Ask: <em>"Based on these ingredients, give me 3 dinner recipes I can make right now."</em></li>
+        <li><strong>YouTube Summaries:</strong> Don't have time for a 45-minute tutorial? Paste the YouTube link into Gemini 3 Pro and ask: <em>"Give me a bulleted list of the key takeaways and any tools mentioned in this video."</em></li>
+    </ul>
+
+    <div class="tech-section">
+        <h2>Technical & Power User Applications</h2>
+        <p>This is where AI Studio shines. Using the <strong>Gemini 3</strong> models, you can actually build assets.</p>
+
+        <div class="tech-grid">
+            <div class="tech-card">
+                <h3>🖥️ Building Websites</h3>
+                <p>You don't need to be a pro coder.</p>
+                <p><strong>Prompt:</strong> <em>"Write a single file HTML code for a personal portfolio website. Use a dark theme with neon accents. Include an 'About Me' section and a photo gallery."</em></p>
+                <p><strong>Workflow:</strong> Copy the code it generates, save it as <code>index.html</code>, and double-click it. Boom, you have a website.</p>
+            </div>
+
+            <div class="tech-card">
+                <h3>📊 Analyzing Data Sets</h3>
+                <p>Forget complex Excel formulas.</p>
+                <p><strong>Workflow:</strong> Export your bank statement or sales data as a CSV file. Drag and drop it into AI Studio.</p>
+                <p><strong>Prompt:</strong> <em>"Analyze this data. Tell me which month had the highest spending, and generate a JSON object for the top 3 categories."</em></p>
+            </div>
+
+            <div class="tech-card">
+                <h3>📄 PDF Interrogation</h3>
+                <p>The "Chat with Data" super-power.</p>
+                <p><strong>Workflow:</strong> Upload a 50-page contract (PDF).</p>
+                <p><strong>Prompt:</strong> <em>"Check this lease agreement for any clauses that mention 'early termination fees'. Quote the exact text."</em></p>
+            </div>
+
+            <div class="tech-card">
+                <h3>🧠 Deep Research</h3>
+                <p>Using Gemini 3 Pro's "Deep Think".</p>
+                <p><strong>Prompt:</strong> <em>"Research the history of [Topic]. Cross-reference three different viewpoints and provide a synthesized summary."</em></p>
+                <p>The model will actually "think" (you'll see the thought process) before answering.</p>
+            </div>
+        </div>
+    </div>
+
+    <h2>How to Start Using AI Studio</h2>
+    <ol>
+        <li>Go to <a href="https://aistudio.google.com" target="_blank">aistudio.google.com</a>.</li>
+        <li>Sign in with your Google account.</li>
+        <li>Click <strong>"Create New"</strong> in the top left.</li>
+        <li>Choose <strong>"Structured Prompt"</strong> (for the Build/Example mode) or <strong>"Chat Prompt"</strong>.</li>
+        <li>Look at the right panel—select <strong>"Gemini 3 Pro"</strong>.</li>
+        <li>Start building!</li>
+    </ol>
+
+</div>
+
+<div class="footer">
+    <p>Curated by AI Expert: <span class="signature">Brother Reeves</span></p>
+</div>
+
+</body>
+</html>
